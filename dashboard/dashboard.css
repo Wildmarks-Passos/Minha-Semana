@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+
+body {
+
+    margin: 0;
+    padding: 0;
+    font-family: 'Kiwi Maru', serif;
+}
+
+.titulo {
+
+    font-size: 100px;
+    text-align: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-image: url("imagens/backgroundTitulo.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+}
+
+.titulo div{
+
+  background-color: #46b9e8;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+main {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
+
+.tarefasConcluidas {
+
+  text-align: center;
+}
+
+.diaSemana {
+
+    text-align: center;
+}
+
+.diaSemana h2 {
+
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.segunda, .terca, .quarta, .quinta, .sexta, .sabado, .domingo {
+
+  background-color: #46b9e8;
+  padding: 10px;
+}
+
+.botaoAdd {
+
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: #30a130;
+    color: white;
+}
+
+.botaoAdd:hover {
+
+    background-color: #268326;
+    cursor: pointer;
+    color: white;
+}
+
+.botaoEsc {
+
+  margin: auto;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.botaoEsc:hover {
+
+    background-color: rgb(199, 0, 0);
+    cursor: pointer;
+}
+
+.botaoDelete {
+  
+  text-align: center;
+  margin-top: 20px;
+}
+
+.botaoDel {
+
+    margin: auto;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+}
+
+.botaoDel:hover {
+
+    background-color: rgb(199, 0, 0);
+    cursor: pointer;
+}
+
+#dateInput {
+
+    margin-bottom: 10px;
+}
+
+.lista {
+
+  text-align: center;
+}
+
+table {
+
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td img {
+
+  width: 18px;
+  margin-right: 7.5px;
+  margin-left: 7.5px;
+  cursor: pointer;
+}
+
+td, th {
+
+  padding: 8px;
+  border: 1px solid #dddddd;
+
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.lista span {
+
+    font-weight: bolder;
+    text-align: left;
+}
+
+.tarefa {
+
+  text-align: left;
+}

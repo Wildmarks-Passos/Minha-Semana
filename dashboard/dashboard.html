@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Minha Semana!</title>
+</head>
+<body>
+    <header class="titulo">
+     <div>Minha Semana</div>
+    </header>
+    <main>
+      <div class="tarefasConcluidas">
+        <h1 id="tarefasConcluidas">
+        </h1>
+      </div>
+      <div class="botaoDelete">
+        <button class="botaoDel" onclick="delTarefaAll()">Deletar Todas As Tarefas</button> 
+      </div>
+      <div class="diaSemana">
+        <h2 onclick="mostrarTarefas(this)" id="segundaf" class="segunda">Segunda</h2>
+        <table class="lista" id="lista-segunda" style="display: none;">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 60%;">
+          <col style="width: 10%;">
+        </colgroup>
+          <tr>
+            <th>Hora</th>
+            <th>Tarefas</th>
+            <th>Del/Con</th>
+          </tr>
+        </table>
+        <div class="areaInput" id="areaInput" style="display: none;">
+            <label>Hora: <input type="time" id="horaInput"></label>
+            <textarea name="texTarefa" id="texTarefa" cols="30" rows="1" placeholder="Escreva aqui sua tarefa..."></textarea>
+            <button class="botaoEsc" onclick="botaoEsc('areaInput')">X</button>
+        </div>
+        <button style="display: none;" class="botaoAdd" onclick="addTarefa('areaInput', 'lista-segunda', 'horaInput', 'texTarefa')">Adcionar Tarefa</button>      
+      </div>
+        
+        <div class="diaSemana">
+            <h2 onclick="mostrarTarefas(this)" class="terca">Terça</h2>
+            <table class="lista" id="lista-terca" style="display: none;">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 60%;">
+          <col style="width: 10%;">
+        </colgroup>
+              <tr>
+                <th>Hora</th>
+                <th>Tarefas</th>
+                <th>Del/Con</th>
+              </tr>
+            </table>
+            <div class="areaInput" id="areaInput1" style="display: none;">
+                <label>Hora: <input type="time" id="horaInput1"></label>
+                <textarea name="texTarefa" id="texTarefa1" cols="30" rows="5" placeholder="Escreva aqui sua tarefa..."></textarea>
+                <button class="botaoEsc" onclick="botaoEsc('areaInput1')">X</button>
+            </div>
+            <button style="display: none;" class="botaoAdd" onclick="addTarefa('areaInput1', 'lista-terca', 'horaInput1', 'texTarefa1')">Adcionar Tarefa</button>
+        </div>
+
+        <div class="diaSemana">
+            <h2 onclick="mostrarTarefas(this)" class="quarta">Quarta</h2>
+            <table class="lista" id="lista-quarta" style="display: none;">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 60%;">
+          <col style="width: 10%;">
+        </colgroup>
+              <tr>
+                <th>Hora</th>
+                <th>Tarefas</th>
+                <th>Del/Con</th>
+              </tr>
+            </table>
+            <div class="areaInput" id="areaInput2" style="display: none;">
+                <label>Hora: <input type="time" id="horaInput2"></label>
+                <textarea name="texTarefa" id="texTarefa2" cols="30" rows="5" placeholder="Escreva aqui sua tarefa..."></textarea>
+                <button class="botaoEsc" onclick="botaoEsc('areaInput2')">X</button>
+            </div>
+            <button style="display: none;" class="botaoAdd" onclick="addTarefa('areaInput2', 'lista-quarta', 'horaInput2', 'texTarefa2')">Adcionar Tarefa</button>
+        </div>
+
+        <div class="diaSemana">
+            <h2 onclick="mostrarTarefas(this)" class="quinta">Quinta</h2>
+            <table class="lista" id="lista-quinta" style="display: none;">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 60%;">
+          <col style="width: 10%;">
+        </colgroup>
+              <tr>
+                <th>Hora</th>
+                <th>Tarefas</th>
+                <th>Del/Con</th>
+              </tr>
+            </table>
+            <div class="areaInput" id="areaInput3" style="display: none;">
+                <label>Hora: <input type="time" id="horaInput3"></label>
+                <textarea name="texTarefa" id="texTarefa3" cols="30" rows="5" placeholder="Escreva aqui sua tarefa..."></textarea>
+                <button class="botaoEsc" onclick="botaoEsc('areaInput3')">X</button>
+            </div>
+            <button style="display: none;" class="botaoAdd" onclick="addTarefa('areaInput3', 'lista-quinta', 'horaInput3', 'texTarefa3')">Adcionar Tarefa</button>
+        </div>
+
+        <div class="diaSemana">
+            <h2 onclick="mostrarTarefas(this)" class="sexta">Sexta</h2>
+            <table class="lista" id="lista-sexta" style="display: none;">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 60%;">
+          <col style="width: 10%;">
+        </colgroup>
+              <tr>
+                <th>Hora</th>
+                <th>Tarefas</th>
+                <th>Del/Con</th>
+              </tr>
+            </table>
+            <div class="areaInput" id="areaInput4" style="display: none;">
+                <label>Hora: <input type="time" id="horaInput4"></label>
+                <textarea name="texTarefa" id="texTarefa4" cols="30" rows="5" placeholder="Escreva aqui sua tarefa..."></textarea>
+                <button class="botaoEsc" onclick="botaoEsc('areaInput4')">X</button>
+            </div>
+            <button style="display: none;" class="botaoAdd" onclick="addTarefa('areaInput4', 'lista-sexta', 'horaInput4', 'texTarefa4')">Adcionar Tarefa</button>
+        </div>
+
+        <div class="diaSemana">
+            <h2 onclick="mostrarTarefas(this)" class="sabado">Sábado</h2>
+            <table class="lista" id="lista-sabado" style="display: none;">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 60%;">
+          <col style="width: 10%;">
+        </colgroup>
+              <tr>
+                <th>Hora</th>
+                <th>Tarefas</th>
+                <th>Del/Con</th>
+              </tr>
+            </table>
+            <div class="areaInput" id="areaInput5" style="display: none;">
+                <label>Hora: <input type="time" id="horaInput5"></label>
+                <textarea name="texTarefa" id="texTarefa5" cols="30" rows="5" placeholder="Escreva aqui sua tarefa..."></textarea>
+                <button class="botaoEsc" onclick="botaoEsc('areaInput5')">X</button>
+            </div>
+            <button style="display: none;" class="botaoAdd" onclick="addTarefa('areaInput5', 'lista-sabado', 'horaInput5', 'texTarefa5')">Adcionar Tarefa</button>
+        </div>
+
+        <div onclick="mostrarTarefas(this)" class="diaSemana">
+            <h2 class="domingo">Domingo</h2>
+            <table class="lista" id="lista-domingo" style="display: none;">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 60%;">
+          <col style="width: 10%;">
+        </colgroup>
+              <tr>
+                <th>Hora</th>
+                <th>Tarefas</th>
+                <th>Del/Con</th>
+              </tr>
+            </table>
+            <div class="areaInput" id="areaInput6" style="display: none;">
+                <label>Hora: <input type="time" id="horaInput6"></label>
+                <textarea name="texTarefa" id="texTarefa6" cols="30" rows="5" placeholder="Escreva aqui sua tarefa..."></textarea>
+                <button class="botaoEsc" onclick="botaoEsc('areaInput6')">X</button>
+            </div>
+            <button style="display: none;" class="botaoAdd" onclick="addTarefa('areaInput6', 'lista-domingo', 'horaInput6', 'texTarefa6')">Adcionar Tarefa</button>
+        </div>
+        
+    </main>
+
+    <script type="text/javascript" src="dashboard.js"></script>
+
+</body>
+</html>
