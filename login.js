@@ -12,7 +12,6 @@ const firebaseConfig = {
     measurementId: "G-CQM194SX69"
 };
 
-
 firebase.initializeApp(firebaseConfig);
 
 var btnEntrar = document.getElementById('btnEntrar')
@@ -25,12 +24,12 @@ btnEntrar.addEventListener('click', function (){
     
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(()=>{
-        window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/'
+        window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/dashboard/dashboard.html'
     }).catch( error =>{
         if (error.code == 'auth/email-already-in-use'){
             firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
-                window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/'
+                window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/dashboard/dashboard.html'
             }).catch( error => {
                 console.log(error)
             })
