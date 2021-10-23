@@ -21,7 +21,7 @@ btnEntrar.addEventListener('click', function (){
     
     var email = document.getElementById('email').value
     var password = document.getElementById('password').value
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(() => {
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
