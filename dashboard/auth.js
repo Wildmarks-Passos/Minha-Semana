@@ -19,10 +19,6 @@ firebase.auth().onAuthStateChanged( user => {
         
         window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/'
     }
-    else{
-
-        window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/'
-    }
 })
 
 console.log(firebase.auth().currentUser)
