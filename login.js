@@ -12,6 +12,10 @@ const firebaseConfig = {
     measurementId: "G-CQM194SX69"
 };
 
+if(!firebase.apps.length){
+    firebase.initializeApp(firebaseConfig)
+ }
+
 var btnEntrar = document.getElementById('btnEntrar')
 
 //Criando novo usuário ou fazendo login

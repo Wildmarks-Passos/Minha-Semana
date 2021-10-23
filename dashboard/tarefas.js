@@ -12,6 +12,9 @@ const firebaseConfig = {
   measurementId: "G-CQM194SX69"
 };
 
+if(!firebase.apps.length){
+  firebase.initializeApp(firebaseConfig)
+}
 // Declarando algumas variáveis que serão usadas.
 tarefas = new Object()
 var countTarefasRealizadas = 0
