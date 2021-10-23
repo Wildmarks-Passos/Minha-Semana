@@ -15,13 +15,14 @@ const firebaseConfig = {
 if(!firebase.apps.length){
   firebase.initializeApp(firebaseConfig)
 }
+
 // Declarando algumas variáveis que serão usadas.
-tarefas = new Object()
+var tarefas = new Object()
 var countTarefasRealizadas = 0
-tarConc = document.getElementById("tarefasConcluidas")
+var tarConc = document.getElementById("tarefasConcluidas")
 var ids = []
 
-tables = document.querySelectorAll("table")
+var tables = document.querySelectorAll("table")
 
 tables.forEach(function(el){
   ids.push(el.id) 
