@@ -14,11 +14,15 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const user = firebase.auth().currentUser
+firebase.auth().onAuthStateChanged( user => {
+    if( user ){
+        
+        window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/dashboard/dashboard.html'
+    }
+    else{
 
-if (user){
-    window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/dashboard/dashboard.html'
-}
-else{
-    window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/'
-}
+        window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/'
+    }
+})
+
+console.log(firebase.auth().currentUser)

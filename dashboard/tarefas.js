@@ -161,7 +161,7 @@ function concTarefa(set){
   var dia = set.parentNode.parentNode.parentNode.parentNode.id
   var key = set.parentNode.previousElementSibling.previousElementSibling.innerHTML
 
-  if(set.src == "https://minha-semana.wildmarkspassos.repl.co/dashboard/imagens/no-checked.png"){
+  if(set.src == "https://wildmarks-passos.github.io/Minha-Semana/dashboard/imagens/no-checked.png"){
     set.src="imagens/checked.png"
 
     tarefas = JSON.parse(localStorage.getItem(dia+"_checkeds"))

@@ -21,19 +21,27 @@ btnEntrar.addEventListener('click', function (){
     
     var email = document.getElementById('email').value
     var password = document.getElementById('password').value
-    
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(()=>{
-        window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/dashboard/dashboard.html'
-    }).catch( error =>{
-        if (error.code == 'auth/email-already-in-use'){
-            firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => {
-                window.location.href = 'https://minha-semana.wildmarkspassos.repl.co/dashboard/dashboard.html'
-            }).catch( error => {
-                console.log(error)
-            })
-        }
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(()=>{
+
+            window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/dashboard/dashboard.html'
+        }).catch( error =>{
+
+            if (error.code == 'auth/email-already-in-use'){
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(() => {
+
+                    window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/dashboard/dashboard.html'
+                }).catch( error => {
+
+                    console.log(error)
+                })
+            }
+        })
+
     })
 
 })
