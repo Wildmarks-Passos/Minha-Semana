@@ -21,7 +21,7 @@ var tarefas = new Object()
 var countTarefasRealizadas = 0
 var tarConc = document.getElementById("tarefasConcluidas")
 var ids = []
-
+var mostrarTarefa = document.querySelectorAll('.mostrarTarefaDoDia')
 var tables = document.querySelectorAll("table")
 
 tables.forEach(function(el){
@@ -109,26 +109,30 @@ function botaoEsc(set){
 }
 
 // Função que apenas exibe/esconde as tarefas relacionadas ao dia da semana clicado.
-function mostrarTarefas(set){
+mostrarTarefa.forEach((el, index) => {
+    el.addEventListener('click', () => {
 
-  el = set.nextElementSibling
-  input = set.nextElementSibling.nextElementSibling
-  btn = set.nextElementSibling.nextElementSibling.nextElementSibling
-  if(el.style.display == "none"){
-    el.style.display = "table"
-  }
-  else{
-    el.style.display = "none"
-    input.style.display = "none"
-  }
+      let input = el.nextElementSibling.nextElementSibling
+      let btn = el.nextElementSibling.nextElementSibling.nextElementSibling
 
-  if(btn.style.display == "none"){
-    btn.style.display = "inline-block"
-  }
-  else{
-    btn.style.display = "none"
-  }
-}
+      if(el.nextElementSibling.style.display == "none"){
+      el.nextElementSibling.style.display = "table"
+      }
+
+      else{
+      el.nextElementSibling.style.display = "none"
+      input.style.display = "none"
+      }
+  
+      if(btn.style.display == "none"){
+      btn.style.display = "inline-block"
+      }
+
+      else{
+      btn.style.display = "none"
+      }
+    })
+})
 
 // Função para deletar apenas a tarefa selecionada.
 function delTarefa(set){

@@ -54,10 +54,6 @@ main {
   border-radius: 10px;
   margin-right: 200px;
   margin-left: 200px;
-}
-
-.segunda, .terca, .quarta, .quinta, .sexta, .sabado, .domingo {
-
   background-color: #46b9e8;
   padding: 10px;
 }
