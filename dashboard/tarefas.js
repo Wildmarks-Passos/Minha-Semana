@@ -188,10 +188,10 @@ function getDeletarEConcluirTarefas(){
         el.addEventListener('click', () =>{
             tarefas = {}
             countTarefasRealizadas = 0
-            var dia = el.parentNode.parentNode.parentNode.parentNode.id
-            var key = el.parentNode.previousElementSibling.previousElementSibling.innerHTML
-            var origin = window.location.origin
-            var arrPathName = window.location.pathname.split('/')
+            let dia = el.parentNode.parentNode.parentNode.parentNode.id
+            let key = el.parentNode.previousElementSibling.previousElementSibling.innerHTML
+            let origin = window.location.origin
+            let arrPathName = window.location.pathname.split('/')
             arrPathName.splice(arrPathName.length - 1, 1, 'imagens/no-checked.png')
 
             if(el.src == origin + arrPathName.join('/')){

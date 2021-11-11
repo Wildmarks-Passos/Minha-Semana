@@ -29,14 +29,18 @@ btnEntrar.addEventListener('click', function (){
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(()=>{
 
-            window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/dashboard/dashboard.html'
+            let origin = window.location.origin
+
+            window.location.href = origin + '/dashboard/dashboard.html'
         }).catch( error =>{
 
             if (error.code == 'auth/email-already-in-use'){
                 firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
 
-                    window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/dashboard/dashboard.html'
+                    let origin = window.location.origin
+
+                    window.location.href = origin + '/dashboard/dashboard.html'
                 }).catch( error => {
 
                     console.log(error)

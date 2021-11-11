@@ -17,6 +17,10 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth().onAuthStateChanged( user => {
     if( !user ){
         
-        window.location.href = 'https://wildmarks-passos.github.io/Minha-Semana/'
+        let origin = window.location.origin
+        let arrPathName = window.location.pathname.split('/')
+        arrPathName.splice(arrPathName.length - 2, 2, 'index.html')
+
+        window.location.href = origin + arrPathName.join('/')
     }
 })
