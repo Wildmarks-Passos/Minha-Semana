@@ -1,19 +1,21 @@
 import "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
 import "https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
 import "https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js";
+// import { dadosDoUsuario } from "./auth.js";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAUJOkUtn1K6fXByPv7s0jJqzcl321EExI",
-  authDomain: "minha-semana-b0f1d.firebaseapp.com",
-  projectId: "minha-semana-b0f1d",
-  storageBucket: "minha-semana-b0f1d.appspot.com",
-  messagingSenderId: "365545587087",
-  appId: "1:365545587087:web:1595facb659070b2d8cbfa",
-  measurementId: "G-CQM194SX69"
+    apiKey: "AIzaSyAUJOkUtn1K6fXByPv7s0jJqzcl321EExI",
+    authDomain: "minha-semana-b0f1d.firebaseapp.com",
+    projectId: "minha-semana-b0f1d",
+    storageBucket: "minha-semana-b0f1d.appspot.com",
+    messagingSenderId: "365545587087",
+    appId: "1:365545587087:web:1595facb659070b2d8cbfa",
+    measurementId: "G-CQM194SX69"
 };
 
 if(!firebase.apps.length){
-  firebase.initializeApp(firebaseConfig)
+    firebase.initializeApp(firebaseConfig)
 }
 
 // Declarando algumas variáveis que serão usadas.
@@ -29,20 +31,20 @@ var addTarefa = document.querySelectorAll('.botaoAdd')
 var btnEsc = document.querySelectorAll('.botaoEsc')
 
 tables.forEach(function(el){
-  ids.push(el.id) 
+    ids.push(el.id) 
 })
 
 // Função para buscar as informações salvas do localStorage e exibir ao usuário.
 onload = function(){
-
+    
     for(var i = 0;i < tables.length;i++){
-    if(ids[i] in localStorage){
-        tarefas = {}
-        tarefas = JSON.parse(localStorage.getItem(ids[i]));
-        let tarefasConc = JSON.parse(localStorage.getItem(ids[i]+"_checkeds"))
-
-        countTarefasRealizadas += Object.keys(tarefasConc).length
-        let quant = Object.keys(tarefas);
+        if(ids[i] in localStorage){
+            tarefas = {}
+            tarefas = JSON.parse(localStorage.getItem(ids[i]));
+            let tarefasConc = JSON.parse(localStorage.getItem(ids[i]+"_checkeds"))
+            
+            countTarefasRealizadas += Object.keys(tarefasConc).length
+            let quant = Object.keys(tarefas);
         for(var j = 0;j < quant.length;j++){
 
         let objs = Object.keys(tarefas);
@@ -59,8 +61,7 @@ onload = function(){
     tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
     
     getDeletarEConcluirTarefas()
-    console.log(delTarefa)
-
+    
 }
 
 // Função para adicionar uma nova tarefa no localStorage e no HTML.
