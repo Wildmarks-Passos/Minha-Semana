@@ -14,15 +14,20 @@ const firebaseConfig = {
 
 if(!firebase.apps.length){
     firebase.initializeApp(firebaseConfig)
- }
+}
+
+var db = firebase.firestore()
 
 var btnEntrar = document.getElementById('btnEntrar')
+var listOfDaysWeek = ['lista-segunda', 'lista-terca', 'lista-quarta','lista-quinta', 
+                      'lista-sexta', 'lista-sabado', 'lista-domingo']
 
 //Criando novo usuário ou fazendo login
-btnEntrar.addEventListener('click', function (){
+btnEntrar.addEventListener('click', () => {
     
     var email = document.getElementById('email').value
     var password = document.getElementById('password').value
+
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(() => {
 
@@ -30,7 +35,13 @@ btnEntrar.addEventListener('click', function (){
         .then(()=>{
 
             let origin = window.location.origin
+            let userUid = firebase.auth().currentUser.uid
 
+            const USER_UID_COLLECTION = db.collection(userUid)
+
+            USER_UID_COLLECTION.doc().add({})
+
+            localStorage.setItem('uid', userUid)
             window.location.href = origin + '/dashboard/dashboard.html'
         }).catch( error =>{
 
@@ -39,7 +50,9 @@ btnEntrar.addEventListener('click', function (){
                 .then(() => {
 
                     let origin = window.location.origin
+                    let userUid = firebase.auth().currentUser.uid
 
+                    localStorage.setItem('uid', userUid)
                     window.location.href = origin + '/dashboard/dashboard.html'
                 }).catch( error => {
 
