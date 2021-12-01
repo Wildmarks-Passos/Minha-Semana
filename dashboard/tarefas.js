@@ -49,8 +49,6 @@ onload = DOC_REF.get().then( doc => {
     tarefas = {}
     tarefas = doc.data()
 
-    console.log(tarefas)
-
     if(!tarefas){
         DOC_REF.set({})
     }
@@ -77,37 +75,7 @@ onload = DOC_REF.get().then( doc => {
     getDeletarEConcluirTarefas()
 })
 
-/* onload = function(){
-
-    for(var i = 0;i < tables.length;i++){
-    if(ids[i] in localStorage){
-        tarefas = {}
-        tarefas = JSON.parse(localStorage.getItem(ids[i]));
-        let tarefasConc = JSON.parse(localStorage.getItem(ids[i]+"_checkeds"))
-
-        countTarefasRealizadas += Object.keys(tarefasConc).length
-        let quant = Object.keys(tarefas);
-        for(var j = 0;j < quant.length;j++){
-
-        let objs = Object.keys(tarefas);
-        let valores = Object.values(tarefas);
-        
-        if(objs[j] in tarefasConc){
-            document.getElementById(ids[i]).innerHTML += '<tr><td>' +objs[j]+ '</td><td>'+ valores[j] +'</td><td><img class="delTarefa" src="imagens/lixeira.jpg"><img class="concTarefa" src="imagens/checked.png"></td></tr></label>';
-        }else{
-            document.getElementById(ids[i]).innerHTML += '<tr><td>' +objs[j]+ '</td><td>'+ valores[j] +'</td><td><img class="delTarefa" src="imagens/lixeira.jpg"><img class="concTarefa" src="imagens/no-checked.png"></td></tr></label>';
-        }
-        }
-    }
-    }
-    tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
-    
-    getDeletarEConcluirTarefas()
-
-} */
-
 // Função para adicionar uma nova tarefa no localStorage e no HTML.
-
 addTarefa.forEach((el) => {
 
     el.addEventListener('click', () => {
@@ -137,7 +105,8 @@ addTarefa.forEach((el) => {
                     else{
     
                         document.getElementById(getIdDayWeek).innerHTML += '<tr><td>' +taskHour+ '</td><td>'+taskValue+'</td><td><img class="delTarefa" src="imagens/lixeira.jpg"><img class="concTarefa" src="imagens/no-checked.png"></td></tr>';
-    
+                        getDeletarEConcluirTarefas()
+
                         DOC_REF.set({
     
                             [getIdDayWeek]: {
@@ -152,6 +121,7 @@ addTarefa.forEach((el) => {
                 else {
 
                     document.getElementById(getIdDayWeek).innerHTML += '<tr><td>' +taskHour+ '</td><td>'+taskValue+'</td><td><img class="delTarefa" src="imagens/lixeira.jpg"><img class="concTarefa" src="imagens/no-checked.png"></td></tr>';
+                    getDeletarEConcluirTarefas()
 
                     DOC_REF.set({
     
@@ -168,45 +138,6 @@ addTarefa.forEach((el) => {
     })
 })
 
-/* addTarefa.forEach((el) => {
-
-    el.addEventListener('click', () => {
-
-        let styleInputArea = el.previousElementSibling.style;
-        let taskHour = el.previousElementSibling.children[0].children[0].value;
-        let task = el.previousElementSibling.children[1].value;
-        let getIdDayWeek = el.previousElementSibling.previousElementSibling.id
-
-        if (styleInputArea.display == 'none'){
-          styleInputArea.display = 'inline-block';
-
-          if (localStorage.getItem(getIdDayWeek) == null){
-            tarefas = {};
-            localStorage.setItem(getIdDayWeek, JSON.stringify(tarefas));
-            localStorage.setItem(getIdDayWeek+"_checkeds", JSON.stringify(tarefas));
-          }
-        }
-        else {
-      
-          tarefas = JSON.parse(localStorage.getItem(getIdDayWeek));
-          if(taskHour == ""){
-            alert("Por favor, defina um horário para sua tarefa!")
-          }
-          else if(taskHour in tarefas){
-            alert("Você não pode deifinir duas tarefas com o mesmo horário")
-          }
-          else{
-            tarefas[taskHour] = task;
-            localStorage.setItem(getIdDayWeek, JSON.stringify(tarefas));
-            
-            document.getElementById(getIdDayWeek).innerHTML += '<tr><td>' +taskHour+ '</td><td>'+task+'</td><td><img class="delTarefa" src="imagens/lixeira.jpg"><img class="concTarefa" src="imagens/no-checked.png"></td></tr>';
-          }
-        }
-        getDeletarEConcluirTarefas()
-    })
-}) */
-
-
 // Função para deletar todas as tarefas/tarefas concluídas do localStorage e faz o reload da página.
 botaoDel.addEventListener('click', () => {
     let conf = confirm('Você deseja realmente deletar todas as tarefas?');
@@ -218,15 +149,6 @@ botaoDel.addEventListener('click', () => {
         })
     }
 })
-
-/* botaoDel.addEventListener('click', () => {
-    let conf = confirm('Você deseja realmente deletar todas as tarefas?');
-
-    if(conf === true){
-    localStorage.clear()
-    document.location.reload(true)
-    }
-}) */
 
 // Função para fechar a area de input caso o usuário não queira add nenhuma tarefa.
 btnEsc.forEach((el) => {
@@ -275,46 +197,45 @@ function getDeletarEConcluirTarefas(){
             
             let key = el.parentNode.parentNode.parentNode.parentNode.id
             let obj = el.parentNode.previousElementSibling.previousElementSibling.innerHTML
-
-            // console.log(key)
-            // console.log(obj)
-
-            // DOC_REF.get().then( doc => {
-
-            //     tarefas = doc.data()
-            //     var dia = tarefas[key]
-            //     delete dia[obj]
-            //     console.log(dia)
-            // })
-            
-
-            tarefas = JSON.parse(localStorage.getItem(key))
             let element = el.parentNode.parentNode
-            delete tarefas[obj]
+
             element.parentElement.remove()
-            localStorage.setItem(key, JSON.stringify(tarefas))
-            tarefas = JSON.parse(localStorage.getItem(key+"_checkeds"))
-            delete tarefas[obj]
-            localStorage.setItem(key+"_checkeds", JSON.stringify(tarefas))
-    
-            ids.forEach(function(ele){
-                if(ele+"_checkeds" in localStorage){
-                    tarefas = JSON.parse(localStorage.getItem(ele+"_checkeds"))
-                    countTarefasRealizadas += Object.keys(tarefas).length
-                }
+
+            DOC_REF.get().then( doc => {
+
+                tarefas = doc.data()[key]
+                delete tarefas[obj]
+
+                DOC_REF.update({
+                    [key]: firebase.firestore.FieldValue.delete()
+                })
+
+                Object.keys(tarefas).forEach( hour => {
+                    
+                    console.log(hour)
+                    DOC_REF.set({
+                        [key]: {
+                            [hour]: {
+                                task: tarefas[hour].task,
+                                checked: tarefas[hour].checked
+                            }
+                        }
+                    },{merge: true})
                 })
                 
-            tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
+            })
         })
         
     })
 
     concTarefa.forEach((el) => {
         el.addEventListener('click', () =>{
+
             tarefas = {}
-            countTarefasRealizadas = 0
+
             let dia = el.parentNode.parentNode.parentNode.parentNode.id
-            let key = el.parentNode.previousElementSibling.previousElementSibling.innerHTML
+            let hour = el.parentNode.previousElementSibling.previousElementSibling.innerHTML
+            console.log(hour)
             let origin = window.location.origin
             let arrPathName = window.location.pathname.split('/')
             arrPathName.splice(arrPathName.length - 1, 1, 'imagens/no-checked.png')
@@ -323,125 +244,33 @@ function getDeletarEConcluirTarefas(){
 
                 el.src = "imagens/checked.png"
 
-                tarefas = JSON.parse(localStorage.getItem(dia+"_checkeds"))
+                DOC_REF.set({
+                    
+                    [dia]: {
+                        [hour]: {
+                            checked: true
+                        }
+                    }
+                },{merge: true})
 
-                tarefas[key] = "checked"
-                
-                localStorage.setItem(dia+"_checkeds", JSON.stringify(tarefas))
-                
-                ids.forEach(function(el){
-                if(el+"_checkeds" in localStorage){
-                    tarefas = JSON.parse(localStorage.getItem(el+"_checkeds"))
-                    countTarefasRealizadas += Object.keys(tarefas).length
-                }
-                })
-
+                countTarefasRealizadas += 1
                 tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
             }
             else{
                 el.src="imagens/no-checked.png"
 
-                tarefas = JSON.parse(localStorage.getItem(dia+"_checkeds"))
+                DOC_REF.set({
+                    
+                    [dia]: {
+                        [hour]: {
+                            checked: false
+                        }
+                    }
+                },{merge: true})
 
-                delete tarefas[key]
-
-                localStorage.setItem(dia+"_checkeds", JSON.stringify(tarefas))
-                
-                ids.forEach(function(el){
-                if(el+"_checkeds" in localStorage){
-                    tarefas = JSON.parse(localStorage.getItem(el+"_checkeds"))
-                    countTarefasRealizadas += Object.keys(tarefas).length
-                }
-                })
-
+                countTarefasRealizadas -= 1
                 tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
             }
         })
     })
 }
-
-/* function getDeletarEConcluirTarefas(){
-
-    delTarefa = document.querySelectorAll('.delTarefa')
-    concTarefa = document.querySelectorAll('.concTarefa')
-
-    delTarefa.forEach((el) => {
-        el.addEventListener('click', () => {
-            
-            tarefas = {}
-            countTarefasRealizadas = 0
-            
-            let key = el.parentNode.parentNode.parentNode.parentNode.id
-            let obj = el.parentNode.previousElementSibling.previousElementSibling.innerHTML
-            tarefas = JSON.parse(localStorage.getItem(key))
-            let element = el.parentNode.parentNode
-            delete tarefas[obj]
-            element.parentElement.remove()
-            localStorage.setItem(key, JSON.stringify(tarefas))
-            tarefas = JSON.parse(localStorage.getItem(key+"_checkeds"))
-            delete tarefas[obj]
-            localStorage.setItem(key+"_checkeds", JSON.stringify(tarefas))
-    
-            ids.forEach(function(ele){
-                if(ele+"_checkeds" in localStorage){
-                    tarefas = JSON.parse(localStorage.getItem(ele+"_checkeds"))
-                    countTarefasRealizadas += Object.keys(tarefas).length
-                }
-                })
-                
-            tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
-        })
-        
-    })
-
-    concTarefa.forEach((el) => {
-        el.addEventListener('click', () =>{
-            tarefas = {}
-            countTarefasRealizadas = 0
-            let dia = el.parentNode.parentNode.parentNode.parentNode.id
-            let key = el.parentNode.previousElementSibling.previousElementSibling.innerHTML
-            let origin = window.location.origin
-            let arrPathName = window.location.pathname.split('/')
-            arrPathName.splice(arrPathName.length - 1, 1, 'imagens/no-checked.png')
-
-            if(el.src == origin + arrPathName.join('/')){
-
-                el.src = "imagens/checked.png"
-
-                tarefas = JSON.parse(localStorage.getItem(dia+"_checkeds"))
-
-                tarefas[key] = "checked"
-                
-                localStorage.setItem(dia+"_checkeds", JSON.stringify(tarefas))
-                
-                ids.forEach(function(el){
-                if(el+"_checkeds" in localStorage){
-                    tarefas = JSON.parse(localStorage.getItem(el+"_checkeds"))
-                    countTarefasRealizadas += Object.keys(tarefas).length
-                }
-                })
-
-                tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
-            }
-            else{
-                el.src="imagens/no-checked.png"
-
-                tarefas = JSON.parse(localStorage.getItem(dia+"_checkeds"))
-
-                delete tarefas[key]
-
-                localStorage.setItem(dia+"_checkeds", JSON.stringify(tarefas))
-                
-                ids.forEach(function(el){
-                if(el+"_checkeds" in localStorage){
-                    tarefas = JSON.parse(localStorage.getItem(el+"_checkeds"))
-                    countTarefasRealizadas += Object.keys(tarefas).length
-                }
-                })
-
-                tarConc.innerHTML = countTarefasRealizadas + " Tarefas concluídas"
-            }
-        })
-    })
-}
- */
