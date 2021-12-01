@@ -36,13 +36,14 @@ btnEntrar.addEventListener('click', () => {
             let arrPathName = window.location.pathname.split('/')
             let userUid = firebase.auth().currentUser.uid
 
-            arrPathName.splice(arrPathName.length - 1, 1, '/dashboard/dashboard.html')
+            arrPathName.splice(arrPathName.length - 1, 1, 'dashboard/dashboard.html')
 
             const USER_UID_COLLECTION = db.collection(userUid)
 
             USER_UID_COLLECTION.doc().add({})
 
             localStorage.setItem('uid', userUid)
+            
             window.location.href = origin + arrPathName.join('/')
         }).catch( error =>{
 
@@ -54,9 +55,10 @@ btnEntrar.addEventListener('click', () => {
                     let arrPathName = window.location.pathname.split('/')
                     let userUid = firebase.auth().currentUser.uid
 
-                    arrPathName.splice(arrPathName.length - 1, 1, '/dashboard/dashboard.html')
+                    arrPathName.splice(arrPathName.length - 1, 1, 'dashboard/dashboard.html')
 
                     localStorage.setItem('uid', userUid)
+
                     window.location.href = origin + arrPathName.join('/')
                 }).catch( error => {
 
