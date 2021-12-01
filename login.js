@@ -35,14 +35,17 @@ btnEntrar.addEventListener('click', () => {
         .then(()=>{
 
             let origin = window.location.origin
+            let arrPathName = window.location.pathname.split('/')
             let userUid = firebase.auth().currentUser.uid
+
+            arrPathName.splice(arrPathName.length - 1, 1, '/dashboard/dashboard.html')
 
             const USER_UID_COLLECTION = db.collection(userUid)
 
             USER_UID_COLLECTION.doc().add({})
 
             localStorage.setItem('uid', userUid)
-            window.location.href = origin + '/dashboard/dashboard.html'
+            window.location.href = origin + arrPathName.join('/')
         }).catch( error =>{
 
             if (error.code == 'auth/email-already-in-use'){
@@ -50,10 +53,13 @@ btnEntrar.addEventListener('click', () => {
                 .then(() => {
 
                     let origin = window.location.origin
+                    let arrPathName = window.location.pathname.split('/')
                     let userUid = firebase.auth().currentUser.uid
 
+                    arrPathName.splice(arrPathName.length - 1, 1, '/dashboard/dashboard.html')
+
                     localStorage.setItem('uid', userUid)
-                    window.location.href = origin + '/dashboard/dashboard.html'
+                    window.location.href = origin + arrPathName.join('/')
                 }).catch( error => {
 
                     console.log(error)
