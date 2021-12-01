@@ -19,8 +19,6 @@ if(!firebase.apps.length){
 var db = firebase.firestore()
 
 var btnEntrar = document.getElementById('btnEntrar')
-var listOfDaysWeek = ['lista-segunda', 'lista-terca', 'lista-quarta','lista-quinta', 
-                      'lista-sexta', 'lista-sabado', 'lista-domingo']
 
 //Criando novo usuário ou fazendo login
 btnEntrar.addEventListener('click', () => {
