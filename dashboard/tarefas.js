@@ -22,7 +22,6 @@ var db = firebase.firestore()
 const MINHA_SEMANA_COLLECTION = 'usersMinhaSemana'
 
 const USER_UID = localStorage.getItem('uid')
-const COLLECTION = db.collection(MINHA_SEMANA_COLLECTION)
 const DOC_REF = db.collection(MINHA_SEMANA_COLLECTION).doc(USER_UID)
 
 var tarefas = new Object()
@@ -203,26 +202,9 @@ function getDeletarEConcluirTarefas(){
 
             DOC_REF.get().then( doc => {
 
-                tarefas = doc.data()[key]
-                delete tarefas[obj]
-
                 DOC_REF.update({
-                    [key]: firebase.firestore.FieldValue.delete()
-                })
-
-                Object.keys(tarefas).forEach( hour => {
-                    
-                    console.log(hour)
-                    DOC_REF.set({
-                        [key]: {
-                            [hour]: {
-                                task: tarefas[hour].task,
-                                checked: tarefas[hour].checked
-                            }
-                        }
-                    },{merge: true})
-                })
-                
+                    [`${key}.${obj}`]: firebase.firestore.FieldValue.delete()
+                })    
             })
         })
         
